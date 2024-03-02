@@ -26,11 +26,11 @@ class FrameByFrameSVG extends HTMLElement {
 
     this.attachShadow({ mode: "open" });
 
-    this.handlePointer = this.handlePointer.bind(this);
+    this.handlePointerdown = this.handlePointerdown.bind(this);
     this.handleSlotchange = this.handleSlotchange.bind(this);
   }
 
-  handlePointer(e) {
+  handlePointerdown(e) {
     const { shadowRoot } = this;
     const { host } = shadowRoot;
     const { pageX: left, pageY: top } = e;
@@ -108,14 +108,14 @@ class FrameByFrameSVG extends HTMLElement {
 
     document.documentElement.addEventListener(
       "pointerdown",
-      this.handlePointer
+      this.handlePointerdown
     );
   }
 
   disconnectedCallback() {
     document.documentElement.removeEventListener(
       "pointerdown",
-      this.handlePointer
+      this.handlePointerdown
     );
   }
 }
