@@ -37,11 +37,10 @@ class FrameByFrameSVG extends HTMLElement {
     host.style.setProperty("left", `${left}px`);
     host.style.setProperty("top", `${top}px`);
 
-    const svg =
-      shadowRoot
-        .querySelector("slot")
-        .assignedElements()
-        .find((d) => d.tagName === "svg") || shadowRoot.querySelector("svg");
+    const svg = shadowRoot
+      .querySelector("slot")
+      .assignedElements({ flatten: true })
+      .find((d) => d.tagName === "svg");
 
     const group = svg.querySelector("g");
 
